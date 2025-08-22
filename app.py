@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 import torch
 import pickle
@@ -8,6 +9,7 @@ from scipy.fftpack import dct
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+CORS(app, resources={r"/predict": {"origins": "https://digitalrecog.techviq.com"}})  # Allow your frontend
 
 # Define DigitClassifier class first
 class DigitClassifier(torch.nn.Module):
